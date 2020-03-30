@@ -1,4 +1,4 @@
-# :briefcase: &nbsp;  The Social-Engineer Toolkit (SET) &nbsp;  :briefcase:
+# :briefcase: &nbsp;  The Social-Engineer Toolkit  &nbsp;  :briefcase:
 
 Copyright Bednakov-Xack-Live 2020 Социально-инженерный инструментарий
 
@@ -48,7 +48,11 @@ python setup.py
 
 `` `Баш
 git clone https://github.com/bednakovdenis/setoolkit.git
+
 cd Setoolkit
+
 pip3 install -r needs.txt
+
 python setup.py
+
 `` `
