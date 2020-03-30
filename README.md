@@ -46,7 +46,6 @@ python setup.py
 
 * Все ОС *
 
-`` `Баш
 git clone https://github.com/bednakovdenis/setoolkit.git
 
 cd Setoolkit
