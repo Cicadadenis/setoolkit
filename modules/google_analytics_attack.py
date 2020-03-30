@@ -19,14 +19,14 @@ AUTHOR="Tyler Rosonke (@ZonkSec)"
 ### MAIN ###
 def main():
     print_title()
-    # determins if auto or manual, then calls functions
-    mode_choice = input("[*] Choose mode (automatic/manual): ")
+    # определяет авто или вручную, затем вызывает функции
+    mode_choice = input("[*] Выберите режим (автоматический / ручной): ")
     if mode_choice in ("automatic","auto"):
-        print("\n[*] Entering automatic mode.\n")
-        url = input("[*] Target website (E.g. 'http://xyz.com/'): ")
+        print("\n[*] Вход в автоматический режим.\n")
+        url = input("[*] Целевой веб-сайт (например, http://xyz.com/'): ")
         params = auto_params(url)
     elif mode_choice in ("manual","man"):
-        print("\n[*] Entering manual mode.")
+        print("\n[*] Вход в ручной режим.")
         params = manual_params()
     else:
         print("\n[-] Invalid mode.\n")
@@ -45,7 +45,7 @@ def main():
     loopchoice = input("\n[*] Send payload on loop?(y/n) ")
     if loopchoice == "y":
         looper(params)
-    input("\n\nThis module has finished completing. Press <enter> to continue")
+    input("\n\nЭтот модуль завершен. Нажмите <enter> для продолжения")
 
 ### print_params - loops through params and prints
 def print_params(params):
@@ -55,8 +55,8 @@ def print_params(params):
 
 ### looper - prompts for seconds to sleep, starts loop
 def looper(params):
-    secs = input("[*] Seconds between payload sends: ")
-    input("\nSending request every "+secs+" seconds. Use CTRL+C to terminate. Press <enter> to begin loop.")
+    secs = input("[*] Секунды между отправкой полезной нагрузки: ")
+    input("\nОтправка запроса каждый "+secs+" секунд. Используйте CTRL + C для завершения. Нажмите <enter>, чтобы начать цикл.")
     while True:
         send_spoof(params)
         time.sleep(int(secs))
@@ -75,24 +75,24 @@ def auto_params(url):
         host = str(m.group(1))
         page = "/" + str(m.group(3))
     except:
-        print("\n[-] Unable to parse URL for host/page. Did you forget an ending '/'?\n")
+        print("\n[-] Невозможно проанализировать URL для хоста / страницы. Вы забыли концовку '/'?\n")
         sys.exit()
     try: #makes request to target page
         r = requests.get(url)
     except:
-        print("\n[-] Unable to reach target website for parsing.\n")
+        print("\n[-] Невозможно достичь целевого веб-сайта для анализа.\n")
         sys.exit()
     try: #parses target webpage for title
         m = re.search('<title>(.*)<\/title>', r.text)
         page_title = str(m.group(1))
     except:
-        print("\n[-] Unable to parse target page for title.\n")
+        print("\n[-] Невозможно проанализировать целевую страницу для заголовка.\n")
         sys.exit()
     try: #parses target webpage for tracking id
         m = re.search("'(UA-(.*))',", r.text)
         tid = str(m.group(1))
     except:
-        print("\n[-] Unable to find TrackingID (UA-XXXXX). Website may not be running Google Anayltics.\n")
+        print("\n[-] Невозможно найти TrackingID (UA-XXXXX). На сайте может не работать Google Anayltics.\n")
         sys.exit()
     #builds params dict
     params = {}
@@ -104,21 +104,21 @@ def auto_params(url):
     params['dp'] = page
     params['dt'] = page_title
     params['aip'] = "1"
-    params['dr'] = input("\n[*] Enter referral URL to spoof (E.g. 'http://xyz.com/'): ")
+    params['dr'] = input("\n[*] Введите реферальный URL для подмены (например, http://xyz.com/'): ")
     return params
 
 ### manual_params - prompts for all params
 def manual_params():
     params = {}
     params['v'] = "1"
-    params['tid'] = input("\n[*] Enter TrackingID (tid)(UA-XXXXX): ")
+    params['tid'] = input("\n[*] Введите TrackingID (tid) (UA-XXXXX): ")
     params['cid'] = "555"
     params['t'] = "pageview"
     params['aip'] = "1"
-    params['dh'] = input("[*] Enter target host (dh)(E.g. 'http://xyz.xyz)': ")
-    params['dp'] = input("[*] Enter target page (dp)(E.g. '/aboutme'): ")
-    params['dt'] = input("[*] Enter target page title (dt)(E.g. 'About Me'): ")
-    params['dr'] = input("[*] Enter referal page to spoof (dr): ")
+    params['dh'] = input("[*] Введите целевой хост (dh) (например, http://xyz.xyz)': ")
+    params['dp'] = input("[*] Введите целевую страницу (dp) (например, «/ aboutme»): ")
+    params['dt'] = input("[*] Введите название целевой страницы (dt) (например, «О себе»): ")
+    params['dr'] = input("[*] Войдите на реферальную страницу, чтобы подделать (dr): ")
     return params
 
 ### print_title - prints title and references

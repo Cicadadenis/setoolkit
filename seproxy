@@ -27,17 +27,17 @@ if operating_system == "posix":
 
     definepath = os.getcwd()
 
-    print("\n[*] Welcome to the SET-Proxy Configuration Utility")
-    print("\nEnter the proxy setting information below.\n\nExample: http://10.3.1.1:8080\n")
+    print("\n[*]Добро пожаловать в утилиту настройки SET-Proxy")
+    print("\nВведите информацию о настройке прокси ниже.\n\nExample: http://10.3.1.1:8080\n")
 
     try:
 
-        proxy = input("Enter the proxy server: ")
-        username = input("Enter the username for the proxy (hit enter for none): ")
-        password = getpass.getpass("Enter the password for the proxy (hit enter for none): ")
+        proxy = input("Введите прокси-сервер: ")
+        username = input("Введите имя пользователя для прокси (нажмите Enter, если нет): ")
+        password = getpass.getpass("Введите пароль для прокси (нажмите Enter, чтобы ничего не было): ")
 
     except KeyboardInterrupt:
-        print("\n[!] Exiting the Social-Engineer Toolkit.")
+        print("\n[!]Выход из инструментария социального инженера.")
         sys.exit()
 
     if username != "":
@@ -69,4 +69,4 @@ if operating_system == "posix":
         core.log(error)
 
 else:
-    print("[!] Sorry, this only works on posix (nix) based systems and is not compatible with this operating system.")
+    print("[!] К сожалению, это работает только в системах на основе posix (nix) и не совместимо с этой операционной системой.")

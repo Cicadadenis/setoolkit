@@ -24,14 +24,14 @@ for line in config:
     # check for ettercap choice here
     match1 = re.search("ETTERCAP=ON", line)
     if match1:
-        print_info("ARP Cache Poisoning is set to " +
+        print_info("ARP Cache Poisoning установлен на " +
                    bcolors.GREEN + "ON" + bcolors.ENDC)
         ettercapchoice = 'y'
 
     # check for dsniff choice here
     match2 = re.search("DSNIFF=ON", line)
     if match2:
-        print_info("DSNIFF DNS Poisoning is set to " +
+        print_info("Отравление DNS DSNIFF установлено на " +
                    bcolors.GREEN + "ON" + bcolors.ENDC)
         dsniffchoice = 'y'
         ettercapchoice = 'n'
@@ -64,25 +64,25 @@ if ettercapchoice == 'y':
     if check_options("IPADDR=") != 0:
         ipaddr = check_options("IPADDR=")
     else:
-        ipaddr = raw_input(setprompt("0", "IP address to connect back on: "))
+        ipaddr = raw_input(setprompt("0", "IPадрес для подключения снова: "))
         update_options("IPADDR=" + ipaddr)
 
     if ettercapchoice == 'y':
         try:
             print("""
-  This attack will poison all victims on your local subnet, and redirect them
-  when they hit a specific website. The next prompt will ask you which site you
-  will want to trigger the DNS redirect on. A simple example of this is if you
-  wanted to trigger everyone on your subnet to connect to you when they go to
-  browse to www.google.com, the victim would then be redirected to your malicious
-  site. You can alternatively poison everyone and everysite by using the wildcard
-  '*' flag.
+ Эта атака отравит всех жертв в вашей локальной подсети и перенаправит их
+  когда они попадают на конкретный сайт. Следующая подсказка спросит вас, какой сайт вы
+  захочет включить перенаправление DNS. Простой пример этого, если вы
+  хотел, чтобы все в вашей подсети подключались к вам, когда они
+  перейдите на www.google.com, после чего жертва будет перенаправлена ​​на ваш злонамеренный
+  сайт. Вы также можете отравить всех и каждого, используя подстановочный знак
+  '*' флаг.
 
-  IF YOU WANT TO POISON ALL DNS ENTRIES (DEFAULT) JUST HIT ENTER OR *
+  Если вы хотите отравить все записи DNS (по умолчанию), просто нажмите ENTER или *
 """)
             print_info("Example: http://www.google.com")
             dns_spoof = raw_input(
-                setprompt("0", "Site to redirect to attack machine [*]"))
+                setprompt("0", "Сайт для перенаправления на атаку машины [*]"))
             os.chdir(path)
             # small fix for default
             if dns_spoof == "":
@@ -101,7 +101,7 @@ if ettercapchoice == 'y':
             bridge = ""
             # assign -M arp to arp variable
             arp = "-M arp"
-            print_error("LAUNCHING ETTERCAP DNS_SPOOF ATTACK!")
+            print_error("ЗАПУСК ETTERCAP DNS_SPOOF ATTACK!")
             # spawn a child process
             os.chdir(cwd)
             time.sleep(5)
@@ -123,25 +123,25 @@ if dsniffchoice == 'y':
     if check_options("IPADDR=") != 0:
         ipaddr = check_options("IPADDR=")
     else:
-        ipaddr = raw_input(setprompt("0", "IP address to connect back on: "))
+        ipaddr = raw_input(setprompt("0", "IP адрес для подключения: "))
         update_options("IPADDR=" + ipaddr)
 
     if dsniffchoice == 'y':
         try:
             print("""
-  This attack will poison all victims on your local subnet, and redirect them
-  when they hit a specific website. The next prompt will ask you which site you
-  will want to trigger the DNS redirect on. A simple example of this is if you
-  wanted to trigger everyone on your subnet to connect to you when they go to
-  browse to www.google.com, the victim would then be redirected to your malicious
-  site. You can alternatively poison everyone and everysite by using the wildcard
-  '*' flag.
+ Эта атака отравит всех жертв в вашей локальной подсети и перенаправит их
+  когда они попадают на конкретный сайт. Следующая подсказка спросит вас, какой сайт вы
+  захочет включить перенаправление DNS. Простой пример этого, если вы
+  хотел, чтобы все в вашей подсети подключались к вам, когда они
+  перейдите на www.google.com, после чего жертва будет перенаправлена ​​на ваш злонамеренный
+  сайт. Вы также можете отравить всех и каждого, используя подстановочный знак
+  '*' флаг.
 
-  IF YOU WANT TO POISON ALL DNS ENTRIES (DEFAULT) JUST HIT ENTER OR *
+  Если вы хотите отравить все записи DNS (по умолчанию), просто нажмите ENTER или *
 """)
             print_info("Example: http://www.google.com")
             dns_spoof = raw_input(
-                setprompt("0", "Site to redirect to attack machine [*]"))
+                setprompt("0", "Сайт для перенаправления на атаку машины [*]"))
             # os.chdir(path)
             # small fix for default
             if dns_spoof == "":
@@ -170,8 +170,8 @@ if dsniffchoice == 'y':
             os.chdir(cwd)
             # this is needed to keep it similar to format above for web gui
             # mode
-            pause = raw_input("Press <return> to begin dsniff.")
+            pause = raw_input("Нажмите <return> чтобы начать dsniff.")
         except Exception as error:
             os.chdir(cwd)
-            print_error("ERROR:An error has occurred:")
+            print_error("ERROR:произошла ошибка:")
             print(bcolors.RED + "ERROR" + str(error) + bcolors.ENDC)

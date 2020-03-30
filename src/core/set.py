@@ -57,7 +57,7 @@ try:
         debug_msg(me, "printing 'text.main'", 5)
         show_main_menu = create_menu(text.main_text, text.main)
         # special case of list item 99
-        print('\n  99) Return back to the main menu.\n')
+        print('\n  99) Вернуться в меню.\n')
         main_menu_choice = (raw_input(setprompt("0", "")))
 
         if main_menu_choice == 'exit':
@@ -66,7 +66,7 @@ try:
         if operating_system == "windows" or msf_path == False:
             if main_menu_choice == "1" or main_menu_choice == "4" or main_menu_choice == "8" or main_menu_choice == "3":
                 print_warning(
-                    "Sorry. This feature is not yet supported in Windows or Metasploit was not found.")
+                    "Сожалею. Эта функция еще не поддерживается в Windows или Metasploit не найден.")
                 return_continue()
                 break
 
@@ -139,14 +139,14 @@ try:
 
                 if attack_vector == "":
                     debug_msg(
-                        me, "no attack vector entered, defaulting to '1) Java Applet Attack Method'", 3)
+                        me, "вектор атаки не введен, по умолчанию '1) Метод атаки Java-апплета'", 3)
                     attack_vector = "1"
 
                 # check unsupported features
                 if operating_system == "windows" or msf_path == False:
                     if attack_vector == "2" or attack_vector == "9":
                         print_warning(
-                            "Sorry. This option is not yet available in Windows or Metasploit was not found.")
+                            "Сожалею. Эта опция пока недоступна в Windows или Metasploit не найден.")
                         return_continue()
                         break
 
@@ -157,10 +157,10 @@ try:
                 try:
                     attack_check = int(attack_vector)
                 except:
-                    print_error("ERROR:Invalid selection, going back to menu.")
+                    print_error("ERROR:Неверный выбор, возвращение в меню.")
                     break
                 if attack_check > 9:
-                    print_warning("Invalid option")
+                    print_warning("Неверный вариант")
                     return_continue()
                     break
 
@@ -181,7 +181,7 @@ try:
                 #if attack_vector != "7":
                 debug_msg(me, "printing 'text.webattack_vectors_menu'", 5)
                 show_webvectors_menu = create_menu(text.webattack_vectors_text, text.webattack_vectors_menu)
-                print('  99) Return to Webattack Menu\n')
+                print('  99) Вернуться в меню Webattack\n')
                 choice3 = raw_input(setprompt(["2"], ""))
 
                 if choice3 == 'exit':
@@ -199,20 +199,20 @@ try:
 
                     # webjacking and web templates are not allowed
                     if attack_vector == "5" and choice3 == "1":
-                        print(bcolors.RED + "\n Sorry, you can't use the Web Jacking vector with Web Templates." + bcolors.ENDC)
+                        print(bcolors.RED + "\n Извините, вы не можете использовать вектор Web Jacking с веб-шаблонами." + bcolors.ENDC)
                         return_continue()
                         break
 
                     # if we select multiattack, web templates are not allowed
                     if attack_vector == "6" and choice3 == "1":
-                        print(bcolors.RED + "\n Sorry, you can't use the Multi-Attack vector with Web Templates." + bcolors.ENDC)
+                        print(bcolors.RED + "\n Извините, вы не можете использовать вектор Multi-Attack с веб-шаблонами." + bcolors.ENDC)
                         return_continue()
                         break
 
                     # if we select web template and tabnabbing, throw this
                     # error and bomb out to menu
                     if attack_vector == "4" and choice3 == "1":
-                        print(bcolors.RED + "\n Sorry, you can only use the cloner option with the tabnabbing method." + bcolors.ENDC)
+                        print(bcolors.RED + "\n Извините, вы можете использовать только опцию cloner с методом tabnabbing." + bcolors.ENDC)
                         return_continue()
                         break
 
@@ -239,8 +239,8 @@ try:
                         attack_vector = "harvester"
                         filewrite.write(attack_vector)
                         filewrite.close()
-                        print_info("Credential harvester will allow you to utilize the clone capabilities within SET")
-                        print_info("to harvest credentials or parameters from a website as well as place them into a report")
+                        print_info("Уборщик учетных данных позволит вам использовать возможности клонирования в SET")
+                        print_info("собирать учетные данные или параметры с веб-сайта, а также помещать их в отчет")
 
                     # specify tab nabbing attack vector
                     if attack_vector == '4':
@@ -303,19 +303,19 @@ try:
                                                 # this part is to determine if NAT/port forwarding is used
                                                 # if it is it'll prompt for
                                                 # additional questions
-                                                print_info("NAT/Port Forwarding can be used in the cases where your SET machine is")
-                                                print_info("not externally exposed and may be a different IP address than your reverse listener.")
-                                                nat_or_fwd = yesno_prompt('0', 'Are you using NAT/Port Forwarding [yes|no]')
+                                                print_info("NAT/Port Переадресация может использоваться в тех случаях, когда ваш компьютер SET")
+                                                print_info("не подвергается внешнему воздействию и может иметь другой IP-адрес, чем ваш обратный слушатель.")
+                                                nat_or_fwd = yesno_prompt('0', 'Используете ли вы NAT / Port Forwarding[yes|no]')
                                                 if nat_or_fwd == "YES":
-                                                    ipquestion = raw_input(setprompt(["2"], "IP address to SET web server (this could be your external IP or hostname)"))
+                                                    ipquestion = raw_input(setprompt(["2"], "IP-адрес для веб-сервера SET (это может быть ваш внешний IP или имя хоста)"))
                                                     filewrite2 = open(userconfigpath + "interface", "w")
                                                     filewrite2.write(ipquestion)
                                                     filewrite2.close()
                                                     # is your payload/listener
                                                     # on a different IP?
-                                                    natquestion = yesno_prompt(["2"], "Is your payload handler (metasploit) on a different IP from your external NAT/Port FWD address [yes|no]")
+                                                    natquestion = yesno_prompt(["2"], "Ваш обработчик полезной нагрузки (metasploit) находится на IP-адресе, отличном от вашего внешнего адреса FWD NAT / порта [yes|no]")
                                                     if natquestion == 'YES':
-                                                        ipaddr = raw_input(setprompt(["2"], "IP address for the reverse handler (reverse payload)"))
+                                                        ipaddr = raw_input(setprompt(["2"], "IP-адрес для обратного обработчика(reverse payload)"))
                                                     if natquestion == "NO":
                                                         ipaddr = ipquestion
                                                 # if you arent using NAT/Port
@@ -346,10 +346,10 @@ IP-адрес ниже, а не ваш NAT-адрес. Кроме того, ес
 
                                     try:
                                         revipaddr = detect_public_ip()
-                                        ipaddr = raw_input(setprompt(["2"], "IP address for the POST back in Harvester/Tabnabbing [" + revipaddr + "]"))
+                                        ipaddr = raw_input(setprompt(["2"], "IP-адрес для POST обратно в Харвестер / Tabnabbing [" + revipaddr + "]"))
                                         if ipaddr == "": ipaddr=revipaddr
                                     except Exception:
-                                        rhost = raw_input("Enter the IP address for POST back in Harvester/Tabnabbing: ")
+                                        rhost = raw_input("Введите IP-адрес для POST обратно в Harvester / Tabnabbing: ")
                                         ipaddr = rhost
 
                                 if check_options("IPADDR=") != 0:
@@ -531,9 +531,9 @@ IP-адрес ниже, а не ваш NAT-адрес. Кроме того, ес
                             gen_hta_cool_stuff()
                             attack_vector = "hta"
                             print_status(
-                                "Automatically starting Apache for you...")
+                                "Автоматический запуск Apache для вас ...")
                             subprocess.Popen(
-                                "service apache2 start", shell=True).wait()
+                                "запуск сервиса apache2", shell=True).wait()
 
                         # grab browser exploit selection
                         if attack_vector == "browser":
@@ -649,9 +649,9 @@ IP-адрес ниже, а не ваш NAT-адрес. Кроме того, ес
                         print_warning(
                             "Example: /home/website/ (make sure you end with /)")
                         print_warning(
-                            "Also note that there MUST be an index.html in the folder you point to.")
+                            "Также обратите внимание, что ДОЛЖЕН быть файл index.html в папке, на которую вы указываете.")
                         URL = raw_input(
-                            setprompt(["2"], "Path to the website to be cloned"))
+                            setprompt(["2"], "Путь к клонируемому сайту"))
                         if not URL.endswith("/"):
                             if not URL.endswith("index.html"):
                                 URL = URL + "/"
@@ -666,14 +666,14 @@ IP-адрес ниже, а не ваш NAT-адрес. Кроме того, ес
                                 else:
                                     print_error("ERROR:index.html not found!!")
                                     print_error(
-                                        "ERROR:Did you just put the path in, not file?")
+                                        "ERROR:Вы только что указали путь, а не файл?")
                                     print_error(
-                                        "Exiting the Social-Engineer Toolkit...Hack the Gibson.\n")
+                                        "Выход из инструментария социального инженера ... Взломать Гибсона.\n")
                                     exit_set()
 
                         if os.path.isfile(URL + "index.html"):
                             print_status(
-                                "Index.html found. Do you want to copy the entire folder or just index.html?")
+                                "Index.html найден. Вы хотите скопировать всю папку или просто index.html?")
                             choice = raw_input(
                                 "\n1. Copy just the index.html\n2. Copy the entire folder\n\nEnter choice [1/2]: ")
                             if choice == "1" or choice == "":
@@ -682,10 +682,10 @@ IP-адрес ниже, а не ваш NAT-адрес. Кроме того, ес
                                 shutil.copyfile(URL + "index.html", "%s/web_clone/index.html" % (userconfigpath))
                             if choice == "2":
                                 if os.path.isdir(URL + "src/webattack"):
-                                    print_error("You cannot specify a folder in the default SET path. This goes into a loop Try something different.")
-                                    URL = raw_input("Enter the folder to import into SET, this CANNOT be the SET directory: ")
+                                    print_error("Вы не можете указать папку в пути SET по умолчанию. Это входит в цикл Попробуйте что-то другое.")
+                                    URL = raw_input("Введите папку для импорта в SET, это НЕ МОЖЕТ быть каталогом SET: ")
                                     if os.path.isdir(URL + "src/webattack" % (URL)):
-                                        print_error("You tried the same thing. Exiting now.")
+                                        print_error("Вы попробовали то же самое. Выход сейчас.")
                                         sys.exit()
                                 copyfolder(URL, "%s/web_clone/" % userconfigpath)
 
@@ -710,9 +710,9 @@ IP-адрес ниже, а не ваш NAT-адрес. Кроме того, ес
                             gen_hta_cool_stuff()
                             attack_vector = "hta"
                             print_status(
-                                "Automatically starting Apache for you...")
+                                "Автоматический запуск Apache для вас ...")
                             subprocess.Popen(
-                                "service apache2 start", shell=True).wait()
+                                "запуск сервиса apache2", shell=True).wait()
 
                         # if java applet attack
                         if attack_vector == "java":
@@ -939,7 +939,7 @@ IP-адрес ниже, а не ваш NAT-адрес. Кроме того, ес
                 filewrite.write(teensy_menu_choice + "\n")
                 if teensy_menu_choice != "3" and teensy_menu_choice != "7" and teensy_menu_choice != "8" and teensy_menu_choice != "9" and teensy_menu_choice != "10" and teensy_menu_choice != "11" and teensy_menu_choice != "12" and teensy_menu_choice != "13" and teensy_menu_choice != "14":
                     yes_or_no = yesno_prompt(
-                        "0", "Do you want to create a payload and listener [yes|no]: ")
+                        "0", "Вы хотите создать полезную нагрузку и слушателя [yes|no]: ")
                     if yes_or_no == "YES":
                         filewrite.write("payload")
                         filewrite.close()
@@ -979,7 +979,7 @@ IP-адрес ниже, а не ваш NAT-адрес. Кроме того, ес
                 # if we are doing the sd2teensy osx attack
                 if teensy_menu_choice == "9":
                     print_status(
-                        "Generating the SD2Teensy OSX ino file for you...")
+                        "Генерация SDOTeensy OSX INO-файла для вас ...")
                     if not os.path.isdir(userconfigpath + "reports/osx_sd2teensy"):
                         os.makedirs(userconfigpath + "reports/osx_sd2teensy")
                     shutil.copyfile("src/teensy/osx_sd2teensy.ino",
@@ -991,7 +991,7 @@ IP-адрес ниже, а не ваш NAT-адрес. Кроме того, ес
                 # if we are doing the X10 Arduino Sniffer
                 if teensy_menu_choice == "10":
                     print_status(
-                        "Generating the Arduino sniffer and libraries ino..")
+                        "Генерация сниффера и библиотек indu Arduino..")
                     if not os.path.isdir(userconfigpath + "reports/arduino_sniffer"):
                         os.makedirs(userconfigpath + "reports/arduino_sniffer")
                     shutil.copyfile("src/teensy/x10/x10_sniffer.ino",
@@ -999,13 +999,13 @@ IP-адрес ниже, а не ваш NAT-адрес. Кроме того, ес
                     shutil.copyfile("src/teensy/x10/libraries.zip",
                                     userconfigpath + "reports/arduino_sniffer/libraries.zip")
                     print_status(
-                        "Arduino sniffer files and libraries exported to ~/.set/reports/arduino_sniffer")
+                        "Arduino сниффер файлы и библиотеки, экспортированные в ~/.set/reports/arduino_sniffer")
                     return_continue()
 
                 # if we are doing the X10 Jammer
                 if teensy_menu_choice == "11":
                     print_status(
-                        "Generating the Arduino jammer ino and libraries...")
+                        "Генерация Arduino Jammer ино и библиотеки...")
                     if not os.path.isdir(userconfigpath + "reports/arduino_jammer"):
                         os.makedirs(userconfigpath + "reports/arduino_jammer")
                     shutil.copyfile("src/teensy/x10/x10_blackout.ino",
@@ -1013,13 +1013,13 @@ IP-адрес ниже, а не ваш NAT-адрес. Кроме того, ес
                     shutil.copyfile("src/teensy/x10/libraries.zip",
                                     userconfigpath + "reports/arduino_jammer/libraries.zip")
                     print_status(
-                        "Arduino jammer files and libraries exported to ~/.set/reports/arduino_jammer")
+                        "Arduino jammer файлы и библиотеки, экспортированные в ~/.set/reports/arduino_jammer")
                     return_continue()
 
                 # powershell shellcode injection
                 if teensy_menu_choice == "12":
                     print_status(
-                        "Generating the Powershell - Shellcode injection ino..")
+                        "Генерация Powershell - Shell-инъекция ino..")
                     debug_msg(
                         me, "importing 'src.teensy.powershell_shellcode'", 1)
                     import src.teensy.powershell_shellcode
@@ -1027,7 +1027,7 @@ IP-адрес ниже, а не ваш NAT-адрес. Кроме того, ес
 		# HID Msbuild compile to memory Shellcode Attack
                 if teensy_menu_choice == "14":
                     print_status(
-                        "HID Msbuild compile to memory Shellcode Attack selected")
+                        "HID Msbuild компилируется в память.")
                     debug_msg(
                         me, "importing '-----file-----'", 1)
                     import src.teensy.ino_gen
@@ -1042,7 +1042,7 @@ IP-адрес ниже, а не ваш NAT-адрес. Кроме того, ес
 
             if operating_system == "windows":
                 print_warning(
-                    "Sorry. The wireless attack vector is not yet supported in Windows.")
+                    "Сожалею. Вектор беспроводной атаки еще не поддерживается в Windows.")
                 return_continue()
 
             if operating_system != "windows":
@@ -1065,11 +1065,11 @@ IP-адрес ниже, а не ваш NAT-адрес. Кроме того, ес
                 if not os.path.isfile(airbase_path):
                     if not os.path.isfile("/usr/local/sbin/airbase-ng"):
                         print_warning(
-                            "Warning airbase-ng was not detected on your system. Using one in SET.")
+                            "Предупреждение airbase-ng не обнаружено в вашей системе. Используя один в SET.")
                         print_warning(
-                            "If you experience issues, you should install airbase-ng on your system.")
+                            "Если у вас возникли проблемы, вы должны установить airbase-ng в вашей системе.")
                         print_warning(
-                            "You can configure it through the set_config and point to airbase-ng.")
+                            "Вы можете настроить его через set_config и указать на airbase-ng.")
                         airbase_path = ("src/wireless/airbase-ng")
                     if os.path.isfile("/usr/local/sbin/airbase-ng"):
                         airbase_path = "/usr/local/sbin/airbase-ng"
@@ -1123,7 +1123,7 @@ IP-адрес ниже, а не ваш NAT-адрес. Кроме того, ес
                 if not os.path.isfile(dnsspoof_path):
                     if not os.path.isfile("/usr/local/sbin/dnsspoof"):
                         print_error(
-                            "ERROR:DNS Spoof was not detected. Check the set_config file.")
+                            "ERROR:DNS Подделка не обнаружена. Проверьте файл set_config.")
                         return_continue()
 
         #
@@ -1136,14 +1136,14 @@ IP-адрес ниже, а не ваш NAT-адрес. Кроме того, ес
                 from PIL import Image, ImageDraw
                 from src.qrcode.qrgenerator import *
                 print("""
-The QRCode Attack Vector will create a QRCode for you with whatever URL you want.
+Вектор атаки QRCode создаст QRCode для вас с любым URL, который вы хотите.
 
-When you have the QRCode Generated, select an additional attack vector within SET and
-deploy the QRCode to your victim. For example, generate a QRCode of the SET Java Applet
-and send the QRCode via a mailer.
+Когда у вас есть QRCode Generated, выберите дополнительный вектор атаки в SET и
+разверните QRCode для вашей жертвы. Например, сгенерируйте QRCode Java-апплета SET
+и отправьте QRCode через почтовую программу.
 """)
                 url = raw_input(
-                    "Enter the URL you want the QRCode to go to (99 to exit): ")
+                    "Введите URL, по которому вы хотите перейти на QRCode(99 to exit): ")
                 if url != "99":
                     # if the reports directory does not exist then create it
                     if not os.path.isdir("%s/reports" % (userconfigpath)):
@@ -1153,11 +1153,11 @@ and send the QRCode via a mailer.
 
             except ImportError:
                 print_error(
-                    "This module requires PIL (Or Pillow) and qrcode to work properly.")
+                    "Этот модуль требует PIL (или подушки) и qrcode для правильной работы.")
                 print_error(
-                    "Just do pip install Pillow; pip install qrcode")
+                    "Просто сделайте pip установить подушку; pip install qrcode")
                 print_error(
-                    "Else refer to here for installation: http://pillow.readthedocs.io/en/3.3.x/installation.html")
+                    "Остальное смотрите здесь для установки: http://pillow.readthedocs.io/en/3.3.x/installation.html")
                 return_continue()
 
         # Main Menu choice 9: PowerShell Attacks
@@ -1183,4 +1183,4 @@ and send the QRCode via a mailer.
 # handle keyboard interrupts
 except KeyboardInterrupt:
     print("\n\n Thank you for " + bcolors.RED + "shopping" + bcolors.ENDC +
-          " with the Social-Engineer Toolkit.\n\n Hack the Gibson...and remember...hugs are worth more than handshakes.\n")
+          " с инструментарием социального инженера.\n\n Взломай Гибсона ... и помни ... объятия стоят больше, чем рукопожатия.\n")

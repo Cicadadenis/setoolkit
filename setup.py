@@ -6,15 +6,15 @@
 from __future__ import print_function
 import subprocess
 import os
-print("[*] Installing requirements.txt...")
+print("[*] Установка require.txt...")
 subprocess.Popen("pip3 install -r requirements.txt", shell=True).wait()
-print("[*] Installing setoolkit to /usr/share/setoolkit..")
+print("[*] Установка setoolkit в / usr / share / setoolkit..")
 print(os.getcwd())
 subprocess.Popen("mkdir /usr/share/setoolkit/;mkdir /etc/setoolkit/;cp -rf * /usr/share/setoolkit/;cp src/core/config.baseline /etc/setoolkit/set.config", shell=True).wait()
-print("[*] Creating launcher for setoolkit...")
+print("[*] Создание лаунчера для сетоолкитов...")
 filewrite = open("/usr/local/bin/setoolkit", "w")
 filewrite.write("#!/bin/sh\ncd /usr/share/setoolkit\n./setoolkit")
 filewrite.close()
-print("[*] Done. Chmoding +x.... ")
+print("[*] Готово. Chmoding +x.... ")
 subprocess.Popen("chmod +x /usr/local/bin/setoolkit", shell=True).wait()
-print("[*] Finished. Run 'setoolkit' to start the Social Engineer Toolkit.")
+print("[*] Законченный. Запустите setoolkit, чтобы запустить инструментарий Social Engineer..")

@@ -32,7 +32,7 @@ for line in fileopen:
             if not os.path.isfile(upx_path):
                 if operating_system != "windows":
                     print_warning(
-                        "UPX packer not found in the pathname specified in config. Disabling UPX packing for executable")
+                        "Упаковщик UPX не найден в пути, указанном в конфигурации. Отключение упаковки UPX для исполняемого файла")
                 upx_encode == "OFF"
     # if we removed the set shells to free up space, needed for pwniexpress
     match2 = re.search("SET_INTERACTIVE_SHELL=", line)
@@ -40,7 +40,7 @@ for line in fileopen:
         line = line.replace("SET_INTERACTIVE_SHELL=", "").lower()
         if line == "off":
             sys.exit(
-                "\n   [-] SET Interactive Mode is set to DISABLED. Please change it in the SET config")
+                "\n   [-] SET Интерактивный режим установлен на DISABLED. Пожалуйста, измените его в настройках SET")
 
 # make directory if it's not there
 if not os.path.isdir(userconfigpath + "web_clone/"):
@@ -57,7 +57,7 @@ if os.path.isfile(userconfigpath + "interface"):
         ipaddr = check_options("IPADDR=")
     else:
         ipaddr = raw_input(
-            setprompt("0", "IP address to connect back on for the reverse listener"))
+            setprompt("0", "IP-адрес для подключения для обратного слушателя"))
         update_options("IPADDR=" + ipaddr)
         webserver = ipaddr
 
@@ -67,7 +67,7 @@ else:
         ipaddr = check_options("IPADDR=")
     else:
         ipaddr = raw_input(
-            setprompt("0", "IP address to connect back on for the reverse listener"))
+            setprompt("0", "IP-адрес для подключения для обратного слушателя"))
         update_options("IPADDR=" + ipaddr)
     webserver = ipaddr
 
@@ -77,7 +77,7 @@ if check_options("PORT=") != 0:
 
 else:
     port = raw_input(
-        setprompt("0", "Port you want to use for the connection back"))
+        setprompt("0", "Порт, который вы хотите использовать для подключения обратно"))
 
 
 # define the main variables here
@@ -146,7 +146,7 @@ if payload_selection == "RATTE":
     filewrite.write(data.replace(str(rPort), str(port) + "\x00", 1))
     filewrite.close()
 
-print_status("Done, moving the payload into the action.")
+print_status("Готово, перемещение полезного груза в действие.")
 
 if upx_encode == "ON" or upx_encode == "on":
     # core upx
@@ -166,7 +166,7 @@ if payload_selection == "SETSHELL":
 # if we are targetting nix
 if posix == True:
     print_info(
-        "Targetting of OSX/Linux (POSIX-based) as well. Prepping posix payload...")
+        "Ориентация на OSX / Linux (на основе POSIX) также. Готовая посылка полезной нагрузки...")
     filewrite = open(userconfigpath + "web_clone/mac.bin", "w")
     payload_flags = webserver.split(" ")
     # grab osx binary name

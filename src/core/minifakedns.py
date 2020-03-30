@@ -1,11 +1,11 @@
 #!/usr/bin/env python
 """
-SET core PyFakeMiniDNS server implementation.
+УСТАНОВИТЬ реализацию ядра PyFakeMiniDNS.
 
-Slightly modified implementation of Francisco Santos's PyfakeminiDNS
-script designed to run as a thread and handle various additional
-system configuration tasks, if necessary in the running environment,
-along with a few implementation considerations specifically for SET.
+Слегка измененная реализация PyfakeminiDNS Франциско Сантоса
+Скрипт предназначен для запуска в виде потока и обработки различных дополнительных
+задачи конфигурации системы, при необходимости в рабочей среде,
+наряду с несколькими соображениями по реализации специально для SET.
 """
 
 import os
@@ -20,18 +20,18 @@ dns_server_thread = None
 
 def start_dns_server(reply_ip):
     """
-    Helper function, intended to be called from other modules.
+    Вспомогательная функция, предназначенная для вызова из других модулей.
 
-    Args:
-        reply_ip (string): IPv4 address in dotted quad notation to use in all answers.
-    """
+    Args:
+        reply_ip (строка): IPv4-адрес в четырехточечной нотации для использования во всех ответах.
+"""
     global dns_server_thread
     dns_server_thread = MiniFakeDNS(kwargs={'port': 53, 'ip': reply_ip})
     dns_server_thread.start()
 
 def stop_dns_server():
     """
-    Helper function, intended to be called from other modules.
+    Вспомогательная функция, предназначенная для вызова из других модулей.
     """
     dns_server_thread.stop()
     dns_server_thread.join()
@@ -39,18 +39,18 @@ def stop_dns_server():
 
 class DNSQuery:
     """
-    A DNS query (that can be parsed as binary data).
+    DNS-запрос (который может быть проанализирован как двоичные данные).
 
-    See original for reference, but note there have been changes:
-        https://code.activestate.com/recipes/491264-mini-fake-dns-server/
-    Among the changes are variables names that have been translated
-    to English from their original Spanish.
+    См. Оригинал для справки, но обратите внимание, что произошли изменения:
+        https://code.activestate.com/recipes/491264-mini-fake-dns-server/
+    Среди изменений есть имена переменных, которые были переведены
+    на английский с их оригинального испанского.
     """
 
     def __init__(self, data):
         """
-        Args:
-            data (bytes): The binary data of the DNS packet from the wire.
+    Args:
+            data (bytes): двоичные данные пакета DNS с провода.
         """
         self.data = data
 
@@ -125,26 +125,26 @@ class DNSQuery:
 
     def response(self, ip):
         """
-        Construct a DNS reply packet with a given IP address.
+        Создайте ответный пакет DNS с заданным IP-адресом.
 
-        TODO: This responds incorrectly to EDNS queries that make use
-              of the OPT pseudo-record type. Specifically, the pointer
-              wrong because we do not check the length of the original
-              query we received. Instead, we should note the length of
-              the original packet until the end of the first question,
-              and truncate (i.e., drop, ignore) the remainder.
+        TODO: это неправильно отвечает на запросы EDNS, которые используют
+              типа OPT псевдо-записи. В частности, указатель
+              неправильно, потому что мы не проверяем длину оригинала
+              запрос мы получили. Вместо этого мы должны отметить длину
+              исходный пакет до конца первого вопроса,
+              и усекать (то есть отбрасывать, игнорировать) остаток.
 
-              For now, what this actually means is that testing this
-              server using a recent version of `dig(1)` will fail
-              unless you use the `+noedns` query option. For example:
+              На данный момент, что это на самом деле означает, что тестирование этого
+              сервер, использующий последнюю версию `dig (1)`, потерпит неудачу
+              если вы не используете опцию запроса `+ noedns`. Например:
 
-                  dig @127.0.0.1 example.com +noedns
+                  dig @ 127.0.0.1 example.com + noedns
 
-              Simpler or older DNS utilities such as `host(1)` are
-              probably going to work.
+              Более простые или старые утилиты DNS, такие как host (1)
+              наверное собираюсь на работу.
 
-        Args:
-            ip (string): IP address to respond with.
+        Args:
+            ip (строка): IP-адрес для ответа.
         """
         packet = b''
         if self.domain:
@@ -158,7 +158,7 @@ class DNSQuery:
 
 class MiniFakeDNS(threading.Thread):
     """
-    The MiniFakeDNS server, written to be run as a Python Thread.
+Сервер MiniFakeDNS, созданный для работы в качестве потока Python.
     """
     def __init__(self, group=None, target=None, name=None,
                        args=(), kwargs=None):
@@ -202,7 +202,7 @@ class MiniFakeDNS(threading.Thread):
                     udps.sendto(p.response(self.ip), addr)
                 except BlockingIOError:
                     pass
-            print("Exiting the DNS Server..")
+            print("Выход из DNS-сервера..")
         sys.exit()
 
     def cleanup(self):
@@ -211,15 +211,15 @@ class MiniFakeDNS(threading.Thread):
 
     def stop(self):
         """
-        Signals to the DNS server thread to stop.
+        Сигналы к потоку DNS-сервера для остановки.
         """
         self.stop_flag = True
 
     def usurp_systemd_resolved(self):
         """
-        Helper function to get systemd-resolved out of the way when it
-        is listening on 127.0.0.1:53 and we are trying to run SET's
-        own DNS server.
+        Вспомогательная функция, чтобы получить systemd-разрешение из пути, когда это
+        слушает 127.0.0.1:53 и мы пытаемся запустить SET
+        собственный DNS-сервер.
         """
         try:
             os.mkdir('/etc/systemd/resolved.conf.d')
@@ -233,11 +233,10 @@ class MiniFakeDNS(threading.Thread):
 
     def cede_to_systemd_resolved(self):
         """
-        Helper function to cede system configuration back to systemd-resolved
-        after we have usurped control over DNS configuration away from it.
+        Вспомогательная функция для передачи конфигурации системы обратно в systemd-разрешения
+        после того, как мы узурпировали контроль над конфигурацией DNS.
         """
         os.remove('/etc/systemd/resolved.conf.d/99-setoolkit-dns.conf')
         os.remove('/etc/resolv.conf')
         os.rename('/etc/resolv.conf.original', '/etc/resolv.conf')
         subprocess.call(['systemctl', 'restart', 'systemd-resolved.service'])
-

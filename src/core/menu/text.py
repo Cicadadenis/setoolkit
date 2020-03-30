@@ -231,9 +231,9 @@ if operating_system != "windows":
 
 if operating_system == "windows" or msf_path == False:
     payload_menu_1 = [
-        'SE Toolkit Interactive Shell    Custom interactive reverse toolkit designed for SET',
-        'SE Toolkit HTTP Reverse Shell   Purely native HTTP shell with AES encryption support',
-        'RATTE HTTP Tunneling Payload    Security bypass payload that will tunnel all comms over HTTP\n']
+        'SE Toolkit Interactive Shell    Пользовательский интерактивный обратный инструментарий, разработанный для SET',
+        'SE Toolkit HTTP Reverse Shell   Чисто нативная HTTP-оболочка с поддержкой шифрования AES',
+        'RATTE HTTP Tunneling Payload    Полезная нагрузка обхода безопасности, которая будет туннелировать все соединения через HTTP\n']
 
 payload_menu_1_text = """
 Какую полезную нагрузку вы хотите создать:

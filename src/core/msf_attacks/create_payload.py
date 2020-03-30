@@ -100,10 +100,10 @@ while exploit == "INVALID":
 #  evaluate the string instead of the user input number from here on...
 if exploit == "exploit/windows/fileformat/adobe_pdf_embedded_exe" or exploit == "exploit/windows/fileformat/adobe_pdf_embedded_exe_nojs":
     print_info(
-        "Default payload creation selected. SET will generate a normal PDF with embedded EXE.")
+        "Выбрано создание полезной нагрузки по умолчанию. SET сгенерирует нормальный PDF со встроенным EXE.")
     print("""
-    1. Use your own PDF for attack
-    2. Use built-in BLANK PDF for attack\n""")
+    1. Используйте свой собственный PDF для атаки
+    2.Используйте встроенный пустой PDF для атаки\n""")
 
     choicepdf = raw_input(setprompt(["4"], ""))
 
@@ -111,17 +111,17 @@ if exploit == "exploit/windows/fileformat/adobe_pdf_embedded_exe" or exploit == 
 
     if choicepdf == '1':
         # define if user wants to use their own pdf or built in one
-        inputpdf = raw_input(setprompt(["4"], "Enter path to your pdf [blank-builtin]"))
+        inputpdf = raw_input(setprompt(["4"], "Введите путь к вашему PDF [пусто-встроенный]"))
         choicepdf = inputpdf
         # if blank, then default to normal pdf
         if inputpdf == "":
             # change to default SET pdf
-            print_info("Defaulting to BLANK PDF built into SET...")
+            print_info("По умолчанию BLANK PDF встроен в SET...")
             inputpdf = definepath + "/src/core/msf_attacks/form.pdf"
             choicepdf = inputpdf
         # if no file exists defalt this
         if not os.path.isfile(inputpdf):
-            print_warning("Unable to find PDF, defaulting to blank PDF.")
+            print_warning("Невозможно найти PDF, по умолчанию пустой PDF.")
             inputpdf = definepath + "/src/core/msf_attacks/form.pdf"
             choicepdf = inputpdf
 
@@ -214,7 +214,7 @@ if exploit_counter == 0:
         a = 1
     counter = 0
     while a == 1:
-        if counter == 10: 
+        if counter == 10:
             a = 2
             print_error("Unable to generate PDF - there appears to be an issue with your Metasploit install.")
             print_error("You will need to troubleshoot Metasploit manually and try generating a PDF. You can manually troubleshoot by going to /root/.set/ and typing msfconsole -r template.rc to reproduce the issue.")
@@ -229,7 +229,7 @@ if exploit_counter == 0:
             if os.path.isfile(msfpath + "local/" + outfile):
                 subprocess.Popen("cp %slocal/%s %s" %
                                  (msfpath, outfile, userconfigpath), shell=True)
-                counter = counter + 1 
+                counter = counter + 1
             time.sleep(3)
 
     print_status("Payload creation complete.")

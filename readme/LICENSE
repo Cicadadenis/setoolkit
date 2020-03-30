@@ -1,18 +1,18 @@
-Copyright 2020, The Social-Engineer Toolkit (SET) by TrustedSec, LLC
-All rights reserved. 
+Copyright Bednakov-Xack-Live 2020, Социально-инженерный инструментарий 
+Все права защищены.
 
-Redistribution and use in source and binary forms, with or without modification, are permitted provided that the following conditions are met:
+Перераспределение и использование в исходной и двоичной формах, с изменениями или без них, разрешается при условии соблюдения следующих условий:
 
-    * Redistributions of source code must retain the above copyright notice, this list of conditions and the following disclaimer.
-    * Redistributions in binary form must reproduce the above copyright notice, this list of conditions and the following disclaimer in the documentation and/or other materials provided with the distribution.
-    * Neither the name of Social-Engineer Toolkit nor the names of its contributors may be used to endorse or promote products derived from this software without specific prior written permission.
+    * При повторном распространении исходного кода должно сохраняться указанное выше уведомление об авторских правах, этот список условий и следующий отказ от ответственности.
+    * При повторном распространении в двоичной форме должно быть воспроизведено указанное выше уведомление об авторских правах, этот список условий и следующий отказ от ответственности в документации и / или других материалах, поставляемых при распространении.
+    * Ни название Social-Engineer Toolkit, ни имена его участников не могут использоваться для поддержки или продвижения продуктов, созданных на основе данного программного обеспечения, без специального предварительного письменного разрешения.
 
-THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS "AS IS" AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE ARE DISCLAIMED. IN NO EVENT SHALL THE COPYRIGHT OWNER OR CONTRIBUTORS BE LIABLE FOR ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR CONSEQUENTIAL DAMAGES (INCLUDING, BUT NOT LIMITED TO, PROCUREMENT OF SUBSTITUTE GOODS OR SERVICES; LOSS OF USE, DATA, OR PROFITS; OR BUSINESS INTERRUPTION) HOWEVER CAUSED AND ON ANY  THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
+НАСТОЯЩЕЕ ПРОГРАММНОЕ ОБЕСПЕЧЕНИЕ ПРЕДОСТАВЛЯЕТСЯ АВТОРСКИМИ ПРАВАМИ И ВКЛАДЧИКАМИ «КАК ЕСТЬ» И ЛЮБЫМИ ЯВНЫМИ ИЛИ ПОДРАЗУМЕВАЕМЫМИ ГАРАНТИИ, ВКЛЮЧАЯ, НО НЕ ОГРАНИЧИВАЯСЯ, ПОДРАЗУМЕВАЕМЫЕ ГАРАНТИИ ТОВАРНОГО ОБЕСПЕЧЕНИЯ И ПРИГОДНОСТИ ДЛЯ ОСОБЫХ ЦЕЛЕЙ. НИ ПРИ КАКИХ ОБСТОЯТЕЛЬСТВАХ ПРЕДПРИНИМАТЕЛЬ ВЛАДЕЛЬЦЕВ ИЛИ ВЗНОСОВ АВТОРСКИХ ПРАВ НЕ НЕСЕТ ОТВЕТСТВЕННОСТИ ЗА ЛЮБОЙ ПРЯМОЙ, НЕПРАВИЛЬНЫЙ, СЛУЧАЙНЫЙ, СПЕЦИАЛЬНЫЙ, ИСКЛЮЧИТЕЛЬНЫЙ ИЛИ КОСВЕННЫЙ УЩЕРБ (ВКЛЮЧАЯ, НО НЕ ОГРАНИЧИВАЯСЯ НА ЗАКУПОК ИЗМЕНЯЕМЫХ ТОВАРОВ ИЛИ УСЛУГ; УТРАТА ИСПОЛЬЗОВАНИЯ; ИЛИ НАРУШЕНИЕ БИЗНЕСА) ОДНАКО ВЫЗЫВАЕТСЯ И НА ЛЮБОЙ ТЕОРИИ ОТВЕТСТВЕННОСТИ, ЛИБО В КОНТРАКТЕ, СТРОГО ОТВЕТСТВЕННОСТИ, ИЛИ ИСПЫТАНИИ (ВКЛЮЧАЯ ХАРАКТЕРИСТИКУ ИЛИ ИНЫМ ОБРАЗОМ), ВОЗНИКАЮЩИХ В ЛЮБОЙ ПЕРЕД ИСПОЛЬЗОВАНИЕМ ЭТОГО ПРОГРАММНОГО ОБЕСПЕЧЕНИЯ, ДАЖЕ ПОСЕТИЛИ ПОГОДУ.
 
-The above licensing was taken from the BSD licensing and is applied to Social-Engineer Toolkit as well.
+Вышеупомянутое лицензирование было взято из лицензирования BSD и применяется также к Social-Engineer Toolkit.
 
-Note that the Social-Engineer Toolkit is provided as is, and is a royalty free open-source application.
+Обратите внимание, что Social-Engineer Toolkit предоставляется как есть и является бесплатным приложением с открытым исходным кодом.
 
-Feel free to modify, use, change, market, do whatever you want with it as long as you give the appropriate credit where credit is due (which means giving the authors the credit they deserve for writing it). 
+Не стесняйтесь модифицировать, использовать, изменять, продавать, делать с ней все, что вы хотите, при условии, что вы предоставляете соответствующий кредит в том случае, если вам нужен кредит (что означает предоставление авторам кредита, которого они заслуживают за его написание).
 
-Also note that by using this software, if you ever see the creator of SET in a bar, you should (optional) give him a hug and should (optional) buy him a beer (or bourbon - hopefully bourbon). Author has the option to refuse the hug (most likely will never happen) or the beer or bourbon (also most likely will never happen). Also by using this tool (these are all optional of course!), you should try to make this industry better, try to stay positive, try to help others, try to learn from one another, try stay out of drama, try offer free hugs when possible (and make sure recipient agrees to mutual hug), and try to do everything you can to be awesome. 
+Также обратите внимание, что при использовании этого программного обеспечения, если вы когда-нибудь увидите создателя SET в баре, вы должны (необязательно) обнять его и (необязательно) купить ему пиво (или бурбон - возможно, бурбон). У автора есть возможность отказаться от объятий (скорее всего, никогда не случится) или от пива или бурбона (также, скорее всего, никогда не произойдет). Также с помощью этого инструмента (все это, конечно, не обязательно!), Вы должны попытаться сделать эту отрасль лучше, стараться оставаться позитивными, стараться помогать другим, стараться учиться друг у друга, стараться держаться подальше от драмы, стараться предлагать бесплатно обнимите, когда это возможно (и убедитесь, что получатель согласен на взаимное объятие), и постарайтесь сделать все возможное, чтобы быть удивительным.

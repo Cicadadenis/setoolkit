@@ -1,4 +1,3 @@
-This is a new section to add your own modules, you can use function calls like:
+Это новый раздел для добавления ваших собственных модулей, вы можете использовать вызовы функций, такие как:
 
-Read the readme/User_Manual.pdf on how to create your own SET modules.
-
+Прочтите readme / User_Manual.pdf о том, как создавать свои собственные модули SET.

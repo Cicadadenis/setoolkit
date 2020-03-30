@@ -50,7 +50,7 @@ try:
 except ImportError:
 
     print(
-        "[!] The python-pycrypto python module not installed. You will lose the ability for encrypted communications.")
+        "[!] Модуль python-pycrypto python не установлен. Вы потеряете возможность зашифрованной связи.")
     pass
 
 # get the main SET path
@@ -210,13 +210,13 @@ def yesno_prompt(category, text):
             response = "YES"
             valid_response = True
         else:
-            print_warning("valid responses are 'n|y|N|Y|no|yes|No|Yes|NO|YES'")
+            print_warning("действительные ответы 'n|y|N|Y|no|yes|No|Yes|NO|YES'")
     return response
 
 
 def return_continue():
-    print(("\n      Press " + bcolors.RED +
-           "<return> " + bcolors.ENDC + "to continue"))
+    print(("\n     Нажмите" + bcolors.RED +
+           "<return> " + bcolors.ENDC + "продолжить"))
     pause = raw_input()
 
 # DEBUGGING #############
@@ -306,7 +306,7 @@ class create_menu:
 
 def detect_public_ip():
     """
-    Helper function to auto-detect our public IP(v4) address.
+Вспомогательная функция для автоматического определения нашего публичного IP-адреса (v4).
     """
     rhost = socket.socket(socket.AF_INET, socket.SOCK_DGRAM)
     rhost.connect(('google.com', 0))
@@ -315,15 +315,14 @@ def detect_public_ip():
 
 def validate_ip(address):
     """
-    Validates that a given string is an IPv4 dotted quad.
-    """
+Проверяет, что данная строка является квадратом с точками IPv4.    """
     try:
         if socket.inet_aton(address):
             if len(address.split('.')) == 4:
-                debug_msg("setcore", "this is a valid IP address", 5)
+                debug_msg("setcore", "это действительный IP-адрес", 5)
                 return True
             else:
-                print_error("This is not a valid IP address...")
+                print_error("Это не действительный IP-адрес...")
                 raise socket.error
 
         else:
@@ -405,13 +404,13 @@ def meta_path():
         # if we didn't find anything
         if trigger == 0:
             print_error(
-                "Metasploit path not found. These payloads will be disabled.")
+                "Метасплойт пути не найден. Эти полезные данные будут отключены.")
             print_error(
-                "Please configure Metasploit's path in the /etc/setoolkit/set.config file.")
+                "Пожалуйста, настройте путь Metasploit в/etc/setoolkit/set.config file.")
             msf_path = False
 
     except Exception as e:
-        print_status("Something went wrong. Printing error: " + str(e))
+        print_status("Что-то пошло не так. Ошибка печати: " + str(e))
 
     # this is an option if we don't want to use Metasploit period
     check_metasploit = check_config("METASPLOIT_MODE=").lower()
@@ -442,25 +441,25 @@ def meta_database():
 def grab_ipaddress():
     try:
         revipaddr = detect_public_ip()
-        rhost = raw_input(setprompt("0", "IP address or URL (www.ex.com) for the payload listener (LHOST) [" + revipaddr + "]"))
+        rhost = raw_input(setprompt("0", "IP-адрес или URL (www.ex.com) для прослушивателя полезной нагрузки (LHOST) [" + revipaddr + "]"))
         if rhost == "": rhost = revipaddr
 
     except Exception:
-        rhost = raw_input(setprompt("0", "Enter your interface/reverse listener IP Address or URL"))
+        rhost = raw_input(setprompt("0", "EВведите ваш интерфейс / обратный IP-адрес слушателя или URL"))
 
     if validate_ip(rhost) == False:
         while 1:
-            choice = raw_input(setprompt(["2"], "This is not an IP address. Are you using a hostname? [y/n] "))
+            choice = raw_input(setprompt(["2"], "Это не IP-адрес. Вы используете имя хоста?[y/n] "))
             if choice == "" or choice.lower() == "y":
-                print_status("Roger that ghostrider. Using hostnames moving forward (hostnames are 1337, nice job)..")
+                print_status("Роджер этот призрак. Использование имен хостов в дальнейшем (имена хостов 1337, отличная работа)..")
                 break
             else:
-                rhost = raw_input(setprompt(["2"], "IP address for the reverse connection [" + rhost + "]"))
+                rhost = raw_input(setprompt(["2"], "IP-адрес для обратной связи [" + rhost + "]"))
                 if validate_ip(rhost) == True: break
                 else:
-                    choice = raw_input(setprompt(["2"], "This is not an IP address. Are you using a hostname? [y/n] "))
+                    choice = raw_input(setprompt(["2"], "Это не IP-адрес. Вы используете имя хоста? [y/n] "))
                     if choice == "" or choice.lower() == "y":
-                        print_status("Roger that ghostrider. Using hostnames moving forward (hostnames are 1337, nice job)..")
+                        print_status("Роджер этот призрак. Использование имен хостов движется вперед (имена хостов 1337, отличная работа)..")
                         break
 
     # rhost return when verified
@@ -505,24 +504,24 @@ def update_set():
 
     if backbox == "BackBox":
         print_status(
-            "You are running BackBox Linux which already implements SET updates.")
+            "Вы используете BackBox Linux, который уже реализует обновления SET.")
         print_status(
-            "No need for further operations, just update your system.")
+            "Нет необходимости в дальнейших операциях, просто обновите вашу систему.")
         time.sleep(2)
 
     elif kali == "Kali":
-        print_status("You are running Kali Linux which maintains SET updates.")
+        print_status("Вы используете Kali Linux, который поддерживает обновления SET.")
         time.sleep(2)
 
     # if we aren't running Kali or BackBox :(
     else:
-        print_info("Kali or BackBox Linux not detected, manually updating..")
-        print_info("Updating the Social-Engineer Toolkit, be patient...")
-        print_info("Performing cleanup first...")
+        print_info("Кали или BackBox Linux не обнаружены, обновление вручную..")
+        print_info("Обновление Social-Engineer Toolkit, наберитесь терпения ...")
+        print_info("Выполнение очистки в первую очередь...")
         subprocess.Popen("git clean -fd", shell=True).wait()
-        print_info("Updating... This could take a little bit...")
+        print_info("Обновление ... Это может занять немного...")
         subprocess.Popen("git pull", shell=True).wait()
-        print_status("The updating has finished, returning to main menu..")
+        print_status("Обновление завершено, возвращаясь в главное меню..")
         time.sleep(2)
 
 #
@@ -899,8 +898,8 @@ def show_banner(define_version, graphic):
 
             if cv != version:
                 if version != "":
-                    print(bcolors.RED + "          There is a new version of SET available.\n                    " + bcolors.GREEN + " Your version: " + bcolors.RED + cv + bcolors.GREEN +
-                          "\n                  Current version: " + bcolors.ENDC + bcolors.BOLD + version + bcolors.YELLOW + "\n\nPlease update SET to the latest before submitting any git issues.\n\n" + bcolors.ENDC)
+                        print(bcolors.RED + "          Доступна новая версия SET.\n                    " + bcolors.GREEN + "Ваша версия: " + bcolors.RED + cv + bcolors.GREEN +
+                          "\n                 Текущая версия: " + bcolors.ENDC + bcolors.BOLD + version + bcolors.YELLOW + "\n\nПожалуйста, обновите SET до последней версии, прежде чем отправлять какие-либо проблемы с git.\n\n" + bcolors.ENDC)
 
         # why urllib and sockets cant control DNS resolvers is beyond me - so
         # we use this as a hack job to add a delay and kill if updates are
@@ -914,7 +913,7 @@ def show_banner(define_version, graphic):
         # If thread is still active
         if p.is_alive():
             print(
-                bcolors.RED + " Unable to check for new version of SET (is your network up?)\n" + bcolors.ENDC)
+                bcolors.RED + " Невозможно проверить наличие новой версии SET (работает ли ваша сеть?)\n" + bcolors.ENDC)
             # terminate the process
             p.terminate()
             p.join()
@@ -928,6 +927,7 @@ def show_graphic():
     menu = random.randrange(2, 15)
     if menu == 2:
         print(bcolors.YELLOW + r"""
+        https://www.github.com/bednakovdenis
                  .--.  .--. .-----.
                 : .--': .--'`-. .-'
                 `. `. : `;    : :
@@ -937,6 +937,7 @@ def show_graphic():
 
     if menu == 3:
         print(bcolors.GREEN + r"""
+        https://www.github.com/bednakovdenis
           _______________________________
          /   _____/\_   _____/\__    ___/
          \_____  \  |    __)_   |    |
@@ -947,6 +948,7 @@ def show_graphic():
 
     if menu == 4:
         print(bcolors.BLUE + r"""
+        https://www.github.com/bednakovdenis
             :::===  :::===== :::====
             :::     :::      :::====
              =====  ======     ===
@@ -956,6 +958,7 @@ def show_graphic():
 
     if menu == 5:
         print(bcolors.RED + r"""
+        https://www.github.com/bednakovdenis
            ..######..########.########
            .##....##.##..........##...
            .##.......##..........##...
@@ -967,6 +970,7 @@ def show_graphic():
 
     if menu == 6:
         print(bcolors.PURPLE + r'''
+        https://www.github.com/bednakovdenis
          .M"""bgd `7MM"""YMM MMP""MM""YMM
         ,MI    "Y   MM    `7 P'   MM   `7
         `MMb.       MM   d        MM
@@ -978,6 +982,7 @@ def show_graphic():
 
     if menu == 7:
         print(bcolors.YELLOW + r"""
+        https://www.github.com/bednakovdenis
               ________________________
               __  ___/__  ____/__  __/
               _____ \__  __/  __  /
@@ -987,6 +992,7 @@ def show_graphic():
 
     if menu == 8:
         print(bcolors.RED + r'''
+        https://www.github.com/bednakovdenis
           !\_________________________/!\
           !!                         !! \
           !! Social-Engineer Toolkit !!  \
@@ -995,7 +1001,7 @@ def show_graphic():
           !!                         !!  !
           !!          #hugs          !!  !
           !!                         !!  !
-          !!      By: TrustedSec     !!  /
+          !!      By: Bednakov !!!   !!  /
           !!_________________________!! /
           !/_________________________\!/
              __\_________________/__/!_
@@ -1008,6 +1014,9 @@ def show_graphic():
 
     if menu == 9:
         print(bcolors.YELLOW + """
+
+        https://www.github.com/bednakovdenis
+
          01011001011011110111010100100000011100
          10011001010110000101101100011011000111
          10010010000001101000011000010111011001
@@ -1053,10 +1062,11 @@ def show_graphic():
                   $MM                .MM.
                     ,MM?          .MMM
                        ,MMMMMMMMMMM
-                https://www.trustedsec.com""" + bcolors.ENDC)
+            https://www.github.com/bednakovdenis""" + bcolors.ENDC)
 
     if menu == 11:
         print(bcolors.backBlue + r"""
+        https://www.github.com/bednakovdenis
                           _                                           J
                          /-\                                          J
                     _____|#|_____                                     J
@@ -1081,6 +1091,7 @@ def show_graphic():
 
     if menu == 12:
         print(bcolors.YELLOW + r'''
+        https://www.github.com/bednakovdenis
            ,..-,
          ,;;f^^"""-._
         ;;'          `-.
@@ -1111,6 +1122,7 @@ def show_graphic():
 
     if menu == 13:
         print(bcolors.RED + r"""
+        https://www.github.com/bednakovdenis
                       ..:::::::::..
                   ..:::aad8888888baa:::..
               .::::d:?88888888888?::8b::::.
@@ -1135,6 +1147,7 @@ def show_graphic():
 
     if menu == 14:
         print(bcolors.BOLD + """
+        https://www.github.com/bednakovdenis
 XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX
 XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX
 XX                                                                          XX
@@ -1220,14 +1233,14 @@ def set_check():
 
 
 def menu_back():
-    print_info("Returning to the previous menu...")
+    print_info("Возвращаясь к предыдущему меню...")
 
 # used to generate random templates for the phishing schema
 
 
 def custom_template():
     try:
-        print ("         [****]  Custom Template Generator [****]\n")
+        print ("         [****]  Генератор пользовательских шаблонов[****]\n")
         print (
             "Always looking for new templates! In the set/src/templates directory send an email\nto info@trustedsec.com if you got a good template!")
         author = raw_input(setprompt("0", "Enter the name of the author"))
@@ -1523,7 +1536,7 @@ def generate_powershell_alphanumeric_payload(payload, ipaddr, port, payload2):
 
     # added random vars before and after to change strings - AV you are
     # seriously ridiculous.
-    var1 = "$" + generate_random_string(2, 2) # $1 
+    var1 = "$" + generate_random_string(2, 2) # $1
     var2 = "$" + generate_random_string(2, 2) # $c
     var3 = "$" + generate_random_string(2, 2) # $2
     var4 = "$" + generate_random_string(2, 2) # $3
