@@ -48,7 +48,7 @@ python setup.py
 
 git clone https://github.com/bednakovdenis/setoolkit.git
 
-cd Setoolkit
+cd setoolkit
 
 pip3 install -r needs.txt
 
